@@ -1,0 +1,21 @@
+{
+  "name": "public",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "browserify main.js -o bundle.js",
+    "watch": "watchify main.js -o bundle.js"
+  },
+  "author": "JoHe",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "passport": "^0.4.0",
+    "passport-spotify": "^1.1.0",
+    "spotify-web-api-js": "^1.2.0"
+  },
+  "devDependencies": {
+    "watchify": "^3.11.1"
+  }
+}
