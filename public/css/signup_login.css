@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+    
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #2F303A;
+    font-family: Poppins, sans-serif;
+    font-size: 1.2rem;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.container-main{
+    width: 80vw;
+    margin: 0 auto;
+    flex-grow: 1;
+}    
+
+#header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 15vh;
+    border-bottom: 1px solid white;
+}
+
+.logo, nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.connect-link{
+    margin-right: 1rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.connect-link:hover, .social-links ul li a:hover{
+    color: #1762A7;
+}
+    
+
+
+
+.container-back{
+    margin-top: 5vh;
+    height: 60vh;
+    background-color: #202027;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    
+}
+    
+.login-selector, .signup-selector{
+    margin-top: 20px;
+    background: white;
+    width: 10rem;
+    padding: .75rem 1.5rem;
+    border-radius: .5rem;
+    text-decoration: none;
+    font-size: .9rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    
+}
+    
+
+.container-form{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    bottom: 0;
+    
+}
+    
+.login-form, .signup-form{
+    background: white;
+    color: black; 
+    border-radius: 10px;
+    height: 370px;
+    width: 50%;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form, .signup-form h2{
+    margin-bottom: 0;
+}
+    
+    
+
+.login-form input, .signup-form input{
+    margin-top: 25px;
+    height: 40px;
+    width: 60%;
+    background: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8em;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+
+#login-submit, #signup-submit{
+    color: white;
+    background-color: #1762A7;
+    width: 10rem;
+    padding: .75rem 1.5rem;
+    border-radius: .5rem;
+    text-decoration: none;
+    font-size: .9rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+    
+
+
+.login-form{
+    position: absolute;
+    left: 43vw;
+    bottom: 6vh;
+    opacity: 0;
+    z-index: -1;
+}
+
+.signup-form{
+    position: absolute;
+    left: 43vw;
+    bottom: 6vh;
+    opacity: 100;
+    z-index: 1;
+}
+    
+
+label.error{
+    color: red;
+    font-size: 0.8rem; 
+}
+
+input.error{
+    border-bottom: 1px solid red;
+}
+
+    
+

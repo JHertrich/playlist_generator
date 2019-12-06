@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "public"
+		},
+		{
+			"path": "/Users/johanneshertrich/Desktop/spotify oAuth/web-api-auth-examples-master/authorization_code"
+		},
+		{
+			"path": "app"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "public"
+	}
+}

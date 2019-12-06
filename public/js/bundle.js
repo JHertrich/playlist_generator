@@ -7,29 +7,34 @@ var clientSecret = '82754758a34f4dd09f89440f88317c1d';
 var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
-accessToken = 'BQBuAtE5-FWndEH1l_lqRxcffE8U1_ak-QfSGiT9TyZqu3V2cD17BCuc4vnjIJWGaJcQOXRi9simIAd6xKz2p9GkE4ku9mXxixEO82YFEWUxeo5qdtYZ-iiopr4D-6QlYbwGHxxhdQRR1DdVZVupsyijWDhunmpYTQ'
+accessToken = 'BQDMW7XLeb3t0UUdcFFcUfKZYamgPQuzMubzPc7EmCZGwc7qQFUAZqvYwWIf9OhmMYHzQr4yP0JE9ioXJioI7qsN86hjfKq6Tuy3ae1OcY7kdMzEkOtXWFBQnQ3yqDrnKXKE2U60w9u5e4AIkEQiSpDkVlJzp5DMJw'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS
 var searchForm = document.querySelector('.artist-selection');
 var searchValue = document.querySelector('.artist-input');
 var newPlaylist = document.querySelector('.new-playlist');
+var searchBtn = document.querySelector('.search-btn');
 
 //GLOBAL VARIABLES
 var countryId = 'US';
 var playlistTracks = [];
 var playlistArtists = [];
 
-//Search Button Event
-searchForm.addEventListener('submit', (ev) => {
-    ev.preventDefault();
-    newPlaylist.innerHTML = '';
+playlistArtistsNew = [];
+playlistTracksNew = [];
+
+//HIDE SAVE-SECTION INITIALLY
+$('.save-section').hide();
+
+//SEARCH BUTTON CLICK EVENT
+searchBtn.addEventListener('click', () => {
+    //ev.preventDefault();
+    //newPlaylist.innerHTML = '';
     var artist = searchValue.value;
 
 
-
-
-    //Get the artist's two top tracks
+    //Get the chosen artist's top track
     s.searchArtists(artist)
         .then(function (data) {
             return data.artists.items[0].id;
@@ -48,7 +53,7 @@ searchForm.addEventListener('submit', (ev) => {
         });
 
 
-    //Get the related artists' top two tracks
+    //Get the related artists' top tracks
     s.searchArtists(artist)
         .then(function (data) {
             return data.artists.items[0].id;
@@ -73,23 +78,51 @@ searchForm.addEventListener('submit', (ev) => {
         .catch(function (error) {
             console.error(error);
         });
+    displayResults(playlistArtists, playlistTracks);
+});
 
-    playlistArtistsNew = [];
-    playlistTracksNew = [];
 
+
+
+function displayResults(playlistArtists, playlistTracks) {
     playlistArtists.forEach((a) => a.forEach((b) => playlistArtistsNew.push(b[0])));
-    playlistTracks.forEach((a) => a.forEach((b) => playlistTracksNew.push(b)));
+    playlistTracks.map((a) => { return a.map((b) => { return playlistTracksNew.push(b) }) });
+    console.log(playlistTracksNew)
 
+
+
+
+    //COMBINE TRACKS AND ARTISTS ARRAYS INTO ONE PLAYLIST ARRAY
     var playlist = playlistTracksNew.map((e, i) => e + ', ' + playlistArtistsNew[i]);
+
+
+
+
+    //LOOP THROUGH THE PLAYLIST AND INSERT TRACKS AND CORRESPONDING ARTISTS IN THE DOM
+    //playlist.forEach((a) => console.log(a));
 
 
     playlist.forEach((a) => {
         let li = document.createElement('li');
         li.innerHTML = a;
         newPlaylist.append(li)
+
     })
 
-});
+
+    //SAVE SECTION FADE IN
+    $('.save-section').fadeIn('slow');
+
+
+}
+
+
+
+
+
+
+
+
 
 
 

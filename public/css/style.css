@@ -62,7 +62,7 @@ body{
 .main-section{
     margin-top: 5vh;
     height: 60vh;
-    background-image: url(img/vinyl.jpeg);
+    background-image: url(../img/vinyl.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -15rem;
