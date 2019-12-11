@@ -7,14 +7,17 @@ var clientSecret = '82754758a34f4dd09f89440f88317c1d';
 var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
-accessToken = 'BQDe6D-_6QhBi2rgtr4SD8T0f3haB0vKof-0J8TM4QDMmQnbFh2_XKyPTKuMcRyalXDOPHBJV-GdxNPvGBftWmKbwOjBEEya6v4l1dg2taCU3_pv-N9j1N5d16ijGYxRWH0aKYOqEMBFMTyww4_thoIF3KOaTvm42g'
+accessToken = 'BQCb0fr_HeJoIGZMSvRE2CMsdimCps0KHs8H6g-VymQU5omTIsbnYxN86FRt1OOepRXbJ6OyvfUsFDUV0HkOEJVbAiHcju2Z-8mMrJaAFF33e2oZvFJUxcFjNB5MsaTE0-gzs7h6AnERNVFjuukwk2dIgQjGgwkj5A'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS
-var searchForm = document.querySelector('.artist-selection');
+var searchBtn = document.querySelector('.search-btn');
 var searchValue = document.querySelector('.artist-input');
 var newPlaylist = document.querySelector('.new-playlist');
-var searchBtn = document.querySelector('.search-btn');
+
+var saveHere = document.querySelector('.save');
+saveErrorMsg = document.querySelector('.save-error');
+
 
 //GLOBAL VARIABLES
 var countryId = 'US';
@@ -33,85 +36,73 @@ searchBtn.addEventListener('click', () => {
     //newPlaylist.innerHTML = '';
     var artist = searchValue.value;
 
-
-    //Get the chosen artist's top track
+    //GET THE CHOSEN ARTIST'S ID
     s.searchArtists(artist)
         .then(data =>
             data.artists.items[0].id)
+        //Get the related artists' top track
         .then(artistId =>
-            s.getArtistTopTracks(artistId, countryId))
-        .then(tracksInfo => {
-            let trackArtists = tracksInfo.tracks.map(t => t.artists.map(a => a.name)).slice(0, 1);
-            let trackNames = tracksInfo.tracks.map(t => t.name).slice(0, 1);
-            playlistArtists.push(trackArtists);
-            playlistTracks.push(trackNames);
-        })
-        .catch(error => console.error(error));
-
-
-    //Get the related artists' top tracks
-    s.searchArtists(artist)
-        .then(function (data) {
-            return data.artists.items[0].id;
-        })
-        .then(function (artistId) {
-            return s.getArtistRelatedArtists(artistId);
-        })
-        .then(function (data) {
-            return data.artists.map(a => a.id);
-        })
-        .then(function (artistsIds) {
+            s.getArtistRelatedArtists(artistId))
+        .then(data =>
+            data.artists.map(a => a.id))
+        .then(artistsIds => {
             artistsIds.forEach((artistId) => {
                 s.getArtistTopTracks(artistId, countryId)
-                    .then(function (tracksInfo) {
-                        let trackArtists = tracksInfo.tracks.map(t => t.artists.map(a => a.name)).slice(0, 1);
-                        let trackNames = tracksInfo.tracks.map(t => t.name).slice(0, 1);
-                        playlistArtists.push(trackArtists);
-                        playlistTracks.push(trackNames);
+                    .then(tracksInfo => {
+                        let trackArtists = tracksInfo.tracks.map(a => a.artists.map(b => b.name)).slice(0, 1);
+                        let trackNames = tracksInfo.tracks.map(a => a.name).slice(0, 1);
+                        let li = document.createElement('li');
+                        trackArtists.flat(2);
+                        trackNames.flat(2);
+
+                        li.innerHTML = trackArtists + ' - ' + trackNames;
+                        newPlaylist.append(li)
+
                     })
             })
         })
         .catch(error => console.error(error));
 
-    displayResults(playlistArtists, playlistTracks);
+    //SAVE SECTION FADE IN
+    $('.save-section').fadeIn('slow');
+
+
+    //save here button click event
+    saveHere.addEventListener('click', () => {
+        if (playlistArtistsNew && playlistTracksNew) {
+            savePlaylist(playlistArtistsNew, playlistTracksNew);
+        }
+        else {
+            saveErrorMsg.innerHTML = 'There is no playlist to save'
+        }
+    })
 });
 
 
 
 
-function displayResults(playlistArtists, playlistTracks) {
 
-    console.log(playlistTracks);
-
-    playlistArtists.forEach((a) => a.forEach((b) => playlistArtistsNew.push(b[0])));
-    playlistTracks.map(a => a.map(b => playlistTracksNew.push(b)));
-
-    console.log(playlistTracksNew);
-
-
-    //COMBINE TRACKS AND ARTISTS ARRAYS INTO ONE PLAYLIST ARRAY
-    var playlist = playlistTracksNew.map((e, i) => e + ', ' + playlistArtistsNew[i]);
-
-
-
-
-    //LOOP THROUGH THE PLAYLIST AND INSERT TRACKS AND CORRESPONDING ARTISTS IN THE DOM
-    //playlist.forEach((a) => console.log(a));
-
-
-    playlist.forEach((a) => {
-        let li = document.createElement('li');
-        li.innerHTML = a;
-        newPlaylist.append(li)
-
-    })
-
-
-    //SAVE SECTION FADE IN
-    $('.save-section').fadeIn('slow');
-
+//SAVE playlist: SEND PLAYLIST DATA TO PHP
+function savePlaylist(artists, tracks) {
+    console.log(artists)
+    console.log(tracks)
 
 }
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
