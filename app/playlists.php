@@ -1,14 +1,16 @@
 <?php
 
-if(isset($_POST['artists'])){
-    $artists = json_decode($_POST['artists']);
-    $tracks = json_decode($_POST['tracks']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+{
+    print_r($_POST);
+    //$json = json_decode($_POST['artist']);
     
-    echo $artists;
-    echo $tracks;
+
 }
 else{
-    echo 'Data not received';
+    echo "no data";
 }
+  
+
 
 

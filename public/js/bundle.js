@@ -7,7 +7,7 @@ var clientSecret = '82754758a34f4dd09f89440f88317c1d';
 var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
-accessToken = 'BQCIzejk3XVc-t4jvFbP3MfaeRcQR8IAGawoIcZax8xWkU55W4MWgsJkOjwLzpw1YUdk1uMOCkLjbdLzQyp8j1vor8V9qgr4ViHOf162pkBYCwhkCjF8PJhoYVorHJ6mxzPD8c8ZQXaAgzo8SsgsluIT0XsAKSdn7g'
+accessToken = 'BQBncFzp3a7QNTdEQ1iR2KKbMx1zcWLELSz3qQ2s2g9-P-GjB_owSLqHw3UhXvB40LiO9Wj6zzorwJhCyBSlFflwxHbvr43TP54eCSRkiOvx9AaBp1IX8HNJdMsnY-EhgpUu7Vyw62Vl_xPLVKBzQX-3RMr1cUqW8w'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS
@@ -71,26 +71,23 @@ searchBtn.addEventListener('click', () => {
     //save here button click event
     saveHere.addEventListener('click', () => {
         if (newPlaylist.hasChildNodes) {
-            var artists = JSON.stringify(playlistArtists);
-            var tracks = JSON.stringify(playlistTracks);
-            console.log(artists)
 
 
             fetch('http://localhost:8080/projects/playlist_generator%202/app/playlists.php', {
                 method: 'POST',
-                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: {
-                    artists: artists,
-                    tracks: tracks
-                }
+                body: JSON.stringify({ artist: 'artist' }),
+
+
             })
-                .then(res => res.text)
+                .then(res => res.text())
                 .then(data => console.log(data))
-                .catch(error => console.log(error))
+                .catch(error => console.log(error.message))
+
         }
+
 
         else {
             saveErrorMsg.innerHTML = 'There is no playlist to save'
@@ -100,16 +97,7 @@ searchBtn.addEventListener('click', () => {
 
 
 
-/*
 
-//SAVE playlist: SEND PLAYLIST DATA TO PHP
-function savePlaylist(artists, tracks) {
-    console.log(artists)
-    console.log(tracks)
-
-}
-
-*/
 
 
 
