@@ -6,7 +6,7 @@ var clientSecret = '82754758a34f4dd09f89440f88317c1d';
 var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
-accessToken = 'BQBncFzp3a7QNTdEQ1iR2KKbMx1zcWLELSz3qQ2s2g9-P-GjB_owSLqHw3UhXvB40LiO9Wj6zzorwJhCyBSlFflwxHbvr43TP54eCSRkiOvx9AaBp1IX8HNJdMsnY-EhgpUu7Vyw62Vl_xPLVKBzQX-3RMr1cUqW8w'
+accessToken = 'BQDHm_jJAWOrVwrXAClVxGTFjVNhdrrbY7dsZagotL3QfYSnTx6DBDSUZUq2QFJDuDUepOkqir_JOFpNj5lLqmG49nI5t_CDEt5J_TSHlOPa_U0LNNuHiHlGoyJUubLnuBdgvfDYH-S6rpunUqaORQQjF4nU4u6kIQ'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS
@@ -77,22 +77,27 @@ searchBtn.addEventListener('click', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ artist: 'artist' }),
-
-
+                body: JSON.stringify(
+                    {
+                        artists: playlistArtists,
+                        tracks: playlistTracks
+                    })
             })
                 .then(res => res.text())
                 .then(data => console.log(data))
                 .catch(error => console.log(error.message))
 
         }
-
-
         else {
             saveErrorMsg.innerHTML = 'There is no playlist to save'
         }
     })
 });
+
+
+
+
+
 
 
 
