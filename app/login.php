@@ -1,9 +1,8 @@
 <?php  
 
-//hier werden die beiden benötigten Klassen inkludiert
 include 'Classes/Database.class.php';
-//include 'Classes/User.class.php' ;
 
+session_start();
 
 try{
     //Übergabe der Formular Eingaben in Variablen
@@ -46,17 +45,14 @@ try{
     
         else
         {
-            echo 'You are logged in now';  
+            echo 'You are logged in now' . '<br>';  
+            $SESSION['user'] = $db->getUser();
+            
         }  
-
     }
 }   
-       
-        
-        
-    
-
-    
+            
+            
 
 //falls der Datenbankzugriff, bzw die sql queries in der Database Klasse fehlerhaft sind, wird hier die PDO Exception "gefangen"  
 catch (PDOException $e) 
@@ -66,6 +62,18 @@ catch (PDOException $e)
     $errArray = $e->errorInfo;
     echo 'Server connection failed. Please try again later';   
 }  
+            
+            
+
+
+
+       
+        
+        
+    
+
+    
+
 
  
 

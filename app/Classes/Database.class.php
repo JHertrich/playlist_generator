@@ -69,6 +69,17 @@ class Database
         $storedPw = $row->pw;
         return $storedPw;
     }
+
+    public function getUser(){
+        $sql = "SELECT * FROM t_user WHERE email = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$this->email]);
+        
+        $row = $stmt->fetch();
+        $userId = $row->user_id;
+        return $userId;
+    }
+
 }
     
 
