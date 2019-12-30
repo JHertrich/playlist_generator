@@ -1,8 +1,8 @@
 <?php  
-
+session_start();
 include 'Classes/Database.class.php';
 
-session_start();
+
 
 try{
     //Übergabe der Formular Eingaben in Variablen
@@ -14,14 +14,13 @@ try{
     };   
 
     
-    //Überprüfung, ob User Eingaben gültig. Falls nicht, wird per header mit einer error Bezeichnung in der query String auf die signUp-form Seite zurück gesendet
+    //Überprüfung, ob User Eingaben gültig. 
 
     if(empty($email) or empty($password))
     {
         echo 'all fields required';
     }  
 
-    //Check Email
     elseif (filter_var($email, FILTER_VALIDATE_EMAIL) === false)
     {
       echo 'Please enter a valid email'; 
@@ -47,6 +46,7 @@ try{
         {
             echo 'You are logged in now' . '<br>';  
             $SESSION['user'] = $db->getUser();
+            echo $SESSION['user'];
             
         }  
     }

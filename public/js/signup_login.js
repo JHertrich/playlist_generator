@@ -39,7 +39,7 @@ $(".login-form").validate({
 
                 $(".login-form").children().hide();
                 $(".login-form").prepend("<h3>" + response + "<h3>");
-                window.location.assign('http://localhost:8080/projects/playlist_generator%202/public/index.php');
+                //window.location.assign('http://localhost:8080/projects/playlist_generator%202/public/index.php');
             }
         });
     }

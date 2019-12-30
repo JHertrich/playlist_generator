@@ -1,12 +1,12 @@
 /*
 var clientId = '2ac7a537ba7141a59e78955306d46600';
-var clientSecret = '82754758a34f4dd09f89440f88317c1d';
+var clientSecret = 'c6f16c9366e04c8098407b591d32c2ce';
 */
 
 var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
-accessToken = 'BQAhT4Ruj_GkoneE1CjDvqdbK3voVD7_XXzrI8XMsJ1ha9ywKI9t8gJ-o49Smly_lBqmdZeRhNU1rr5Q-c3QYkrfS0FQggQF_SbpWTlqRazjCP9zXJKPslsJoiCmTTzEOOeT26kXjss6r3gYCERoByOb8thLtzNAFg'
+accessToken = 'BQABaxBHf4iKIbpda07_dqIyKaflXV_XjHq2AzNyLdM5ZLjlsj55lXjcxGvV4M5aeXGjHEWZNvDWcQbLFvRnzZQV6nbb_VNSvkr5i8MFY-T3-L-n3HCxYVoGPJy1MKrXM4H2DZ35sqiBA1EZ3dlQH5OOZ_wzck8miQ'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS

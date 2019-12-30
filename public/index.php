@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+if (isset($_SESSION['userid'])){
+    $userid = $_SESSION['userid'];
+ 
+    echo "Hallo User: ".$userid;
+}
+else{
+    echo 'no session variable';
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
