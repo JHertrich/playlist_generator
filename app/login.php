@@ -1,7 +1,8 @@
-<?php  
+<?php 
 session_start();
-include 'Classes/Database.class.php';
+//ini_set('session.cookie_secure', '0');
 
+include 'Classes/Database.class.php';
 
 
 try{
@@ -45,15 +46,14 @@ try{
         else
         {
             echo 'You are logged in now' . '<br>';  
-            $SESSION['user'] = $db->getUser();
-            echo $SESSION['user'];
+            $_SESSION['user'] = $db->getUser();
+            header("Location: http://localhost:8080/projects/playlist_generator%202/public/index.php");
             
         }  
     }
 }   
             
             
-
 //falls der Datenbankzugriff, bzw die sql queries in der Database Klasse fehlerhaft sind, wird hier die PDO Exception "gefangen"  
 catch (PDOException $e) 
 {
@@ -62,7 +62,9 @@ catch (PDOException $e)
     $errArray = $e->errorInfo;
     echo 'Server connection failed. Please try again later';   
 }  
-            
+   
+
+?>
             
 
 

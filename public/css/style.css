@@ -49,7 +49,7 @@ body{
     font-weight: bold;
 }
 
-.your-playlists, .connect-link{
+.your-playlists, .connect-link, .login-link, .logout-link{
     margin-right: 1rem;
     text-decoration: none;
     color: inherit;

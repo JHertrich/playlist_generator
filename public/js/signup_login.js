@@ -22,7 +22,6 @@ $(".login-form").validate({
         $('form').effect("shake");
     },
 
-
     //AJAX LOGIN POST
     submitHandler: function (form) {
 
@@ -39,11 +38,11 @@ $(".login-form").validate({
 
                 $(".login-form").children().hide();
                 $(".login-form").prepend("<h3>" + response + "<h3>");
-                //window.location.assign('http://localhost:8080/projects/playlist_generator%202/public/index.php');
+                window.location.assign('http://localhost:8080/projects/playlist_generator%202/public/index.php');
             }
-        });
+        })
     }
-});
+})
 
 
 
@@ -96,7 +95,7 @@ $(".signup-form").validate({
             }
         });
     }
-});
+})
 
 
 //FORM ANIMATIONS
@@ -112,7 +111,7 @@ $(".login-selector").click(function () {
         left: "5vw",
         opacity: 0
     }, 200);
-});
+})
 
 
 $(".signup-selector").click(function () {
@@ -127,7 +126,7 @@ $(".signup-selector").click(function () {
     }, 200).css("z-index", 1).children().removeClass("error"); //REMOVING ERROR CLASS
     //REMOVING THE ERROR LABELS
     $("label").css("display", "none");
-});
+})
 
 
 

@@ -6,7 +6,7 @@ var clientSecret = 'c6f16c9366e04c8098407b591d32c2ce';
 var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
-accessToken = 'BQABaxBHf4iKIbpda07_dqIyKaflXV_XjHq2AzNyLdM5ZLjlsj55lXjcxGvV4M5aeXGjHEWZNvDWcQbLFvRnzZQV6nbb_VNSvkr5i8MFY-T3-L-n3HCxYVoGPJy1MKrXM4H2DZ35sqiBA1EZ3dlQH5OOZ_wzck8miQ'
+accessToken = 'BQCDl11xelbjbTv4Z6cRkT9ewTcpuwqlJpGGqPb53or7dNGIaGQmi-ezb-Cnv4FB7Ap4kUo2bBG-8QEyM2vwGX4lX3xodd8EXQLrYm2z0RuNtxiKy-VyjZxp9hJLTzCblOZmFcNpLpzeZacMAIo2oq31WiQIz2IU5g'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS
@@ -29,8 +29,6 @@ $('.save-section').hide();
 
 //SEARCH BUTTON CLICK EVENT
 searchBtn.addEventListener('click', () => {
-    //ev.preventDefault();
-    //newPlaylist.innerHTML = '';
     var artist = searchValue.value;
 
     //GET THE CHOSEN ARTIST'S ID
@@ -69,6 +67,8 @@ searchBtn.addEventListener('click', () => {
 
     //save here button click event
     saveHere.addEventListener('click', () => {
+
+
         if (newPlaylist.hasChildNodes) {
 
 
@@ -91,8 +91,9 @@ searchBtn.addEventListener('click', () => {
         else {
             saveErrorMsg.innerHTML = 'There is no playlist to save'
         }
+
     })
-});
+})
 
 
 
