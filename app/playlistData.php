@@ -1,5 +1,7 @@
 <?php
 
+include 'Classes/Song.class.php';
+
 try{
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') 
@@ -20,7 +22,12 @@ try{
         $artists = array_slice($data, 0,20);
         $tracks = array_slice($data, 20, 40);
 
-        print_r($tracks);
+        for($i=0; $i<count($artists); $i++){
+           $artist = $artists[$i];
+           $songtitle = $tracks[$i];
+
+           //new Song($artist, $songtitle);
+        }
                 
 
         

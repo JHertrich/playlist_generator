@@ -6,7 +6,7 @@ var clientSecret = 'c6f16c9366e04c8098407b591d32c2ce';
 var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
-accessToken = 'BQCDl11xelbjbTv4Z6cRkT9ewTcpuwqlJpGGqPb53or7dNGIaGQmi-ezb-Cnv4FB7Ap4kUo2bBG-8QEyM2vwGX4lX3xodd8EXQLrYm2z0RuNtxiKy-VyjZxp9hJLTzCblOZmFcNpLpzeZacMAIo2oq31WiQIz2IU5g'
+accessToken = 'BQAZUMGLrPWU02T4v6iJjNz_amDfkSNgkpI2p43qqprxWL3RK9wcWjKGjw2Er5BgHG1I-xvMqXjuerZKqLT-i9HK70wgQ2ghPF1ktLP_iUSgYGpNijddLgG_iFIoeekxug4tIpW-bFK9e1GokKQ8YcCf5g4NNYFUxw'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS
@@ -72,7 +72,7 @@ searchBtn.addEventListener('click', () => {
         if (newPlaylist.hasChildNodes) {
 
 
-            fetch('http://localhost:8080/projects/playlist_generator%202/app/playlists.php', {
+            fetch('http://localhost:8080/projects/playlist_generator%202/app/playlistData.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
