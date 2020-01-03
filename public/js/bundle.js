@@ -7,7 +7,7 @@ var clientSecret = 'c6f16c9366e04c8098407b591d32c2ce';
 var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
-accessToken = 'BQAZUMGLrPWU02T4v6iJjNz_amDfkSNgkpI2p43qqprxWL3RK9wcWjKGjw2Er5BgHG1I-xvMqXjuerZKqLT-i9HK70wgQ2ghPF1ktLP_iUSgYGpNijddLgG_iFIoeekxug4tIpW-bFK9e1GokKQ8YcCf5g4NNYFUxw'
+accessToken = 'BQC02tYJ_hphiWeGNkHPd6jxAnZvZ6NYQaRKXYzzN8nBDhubLwRxV0vdCVjvQWXrCsCTnEv6z88OaH1nHBK0TpD1X_9yRUfGnbxo_tzcfEKB3FPzbfW_Ycolpz7jAgwpLms7Ci7s_V4sUPvgOzrEU37XIRoAc14Dgw'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS

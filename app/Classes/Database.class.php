@@ -80,6 +80,15 @@ class Database
         return $userId;
     }
 
+    public function saveArtist($artistName)
+    { 
+        $sql = "INSERT INTO interpret (int_name) VALUES (:int_name)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['int_name'=>$artistName]);
+        
+        return $this->pdo->lastInsertId();
+        
+    }
 }
     
 

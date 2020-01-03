@@ -9,12 +9,8 @@ class Song {
         $this->artist = $artist;       
         $this->songtitle = $songtitle;  
               
-        $this->saveSong();
+        
     }    
-
-    public function saveSong(){
-
-    }
     
 }
     
