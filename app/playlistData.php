@@ -1,7 +1,5 @@
 <?php
-include 'Classes/Artist.class.php';
-include 'Classes/Song.class.php';
-include 'Classes/Playlist.class.php';
+
 include 'Classes/Database.class.php';
 
 try{
@@ -13,29 +11,43 @@ try{
     
         //Attempt to decode the incoming RAW post data from JSON.
         $array = json_decode($content, true);
+    
+    
 
-
+        /*
         foreach($array as $key => $value){
             foreach($value as $values){
                 $data[] = $values[0];
             }
         }
-
-        $artists = array_slice($data, 0,20);
+        $artists = array_slice($data, 0, 20);
         $tracks = array_slice($data, 20, 40);
+        $playlistName = ['name'];
+
+         */
+       
+        $artists = $array['artists'];
+        $tracks = $array['tracks'];
+        $playlistName = ['name'];
+
+
+
+        $db = new Database('');  
 
 
         for($i=0; $i<count($artists); $i++){
-           $artist = new Artist($artists[$i]);
-           echo $artistId;
 
-           die('first Artist inserted');
+           $artistId = $db->saveArtist($artists[$i][0]);
+           $db->saveSong($artistId, $tracks[$i][0]);
            
-        }
-    }
-        
+           die('first Artist and Song inserted');
 
-        
+        }
+
+    }
+           
+
+
     else{
         throw new Exception( "no json data received");
     }
@@ -44,8 +56,18 @@ catch (Exception $e) {
     echo $e->getMessage(), "\n";
 }
         
+
+        
+        
       
            
+
+
+           
+
+   
+   
+   
             
             
 

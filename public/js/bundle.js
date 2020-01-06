@@ -7,7 +7,7 @@ var clientSecret = 'c6f16c9366e04c8098407b591d32c2ce';
 var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
-accessToken = 'BQC02tYJ_hphiWeGNkHPd6jxAnZvZ6NYQaRKXYzzN8nBDhubLwRxV0vdCVjvQWXrCsCTnEv6z88OaH1nHBK0TpD1X_9yRUfGnbxo_tzcfEKB3FPzbfW_Ycolpz7jAgwpLms7Ci7s_V4sUPvgOzrEU37XIRoAc14Dgw'
+accessToken = 'BQAVzxz6lJPuIw3rpgVtDmXxq8s2C2ryF6Ys-8i_dk6RSFpRKNlbJVzLyZWOPkZRaP1tffDsYRp0AIGgY2iO69dzh3NWAJ87YArJAW9Gw6I0t4KSQaER_EsSpgEacSsEhK1X3k0yhpmXnj-2M4Hf4oW9RCZ2Gl1V2w'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS
@@ -72,29 +72,38 @@ searchBtn.addEventListener('click', () => {
 
         if (newPlaylist.hasChildNodes) {
 
+            var popup = prompt("Please enter the name of your playlist");
+            console.log(popup);
 
-            fetch('http://localhost:8080/projects/playlist_generator%202/app/playlistData.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(
-                    {
-                        artists: playlistArtists,
-                        tracks: playlistTracks
-                    })
-            })
-                .then(res => res.text())
-                .then(data => console.log(data))
-                .catch(error => console.log(error.message))
+            if (popup != null) {
+                fetch('http://localhost:8080/projects/playlist_generator%202/app/playlistData.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            artists: playlistArtists,
+                            tracks: playlistTracks,
+                            name: popup
+                        })
+                })
+                    .then(res => res.text())
+                    .then(data => console.log(data))
+                    .catch(error => console.log(error.message))
 
+            }
         }
         else {
-            saveErrorMsg.innerHTML = 'There is no playlist to save'
+            saveErrorMsg.innerHTML = 'There is no playlist to save';
         }
 
     })
+
 })
+
+
+
 
 
 

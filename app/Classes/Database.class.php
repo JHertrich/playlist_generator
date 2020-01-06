@@ -82,14 +82,34 @@ class Database
 
     public function saveArtist($artistName)
     { 
-        $sql = "INSERT INTO interpret (int_name) VALUES (:int_name)";
+        $sql = "INSERT IGNORE INTO interpret (int_name) VALUES (:int_name)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(['int_name'=>$artistName]);
         
-        return $this->pdo->lastInsertId();
+       if($this->pdo->lastInsertId()){
+            return $this->pdo->lastInsertId();
+            
+       }
+       else{
+            $sql2 = "SELECT * FROM interpret WHERE int_name = '$artistName'"; 
+            
+            foreach($this->pdo->query($sql2) as $row){
+                return $row->int_id;
+            }
+        }   
+    }
+       
         
+    public function saveSong($artistId, $trackName)
+    { 
+        $sql = "INSERT INTO song (int_id, song_titel) VALUES (:int_id, :song_titel)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['int_id'=>$artistId, 'song_titel'=>$trackName]);
     }
 }
+        
+        
+        
     
 
 
