@@ -55,9 +55,6 @@ body{
 .connect-link:hover, .social-links ul li a:hover{
     color: #1762A7;
 }
-    
-
-
 
 .container-back{
     margin-top: 5vh;
@@ -68,8 +65,8 @@ body{
     justify-content: space-around;
     align-items: center;
     border-radius: 5px;
-    
 }
+    
     
 .login-selector, .signup-selector{
     margin-top: 20px;
@@ -82,8 +79,8 @@ body{
     outline: none;
     border: none;
     cursor: pointer;
-    
 }
+    
     
 
 .container-form{
@@ -94,8 +91,8 @@ body{
     align-items: center;
     position: relative;
     bottom: 0;
-    
 }
+    
     
 .login-form, .signup-form{
     background: white;

@@ -1,4 +1,13 @@
+<!--
+AUTHOR: JOHANNES HERTRICH
+LATEST UPDATE: 01/07/2020
+
+Index.php -> MAIN SITE
+-->
+
 <?php
+//CHECKS IF PHP SESSION (IF USER IS LOGGED IN) -> SHOWS RESPECTIVE HEADER 
+
 session_start();
 
 if(!isset($_SESSION['user'])){
@@ -9,9 +18,8 @@ else{
     $userid = $_SESSION['user'];
     include 'header2.php';   
 }
-
-
 ?>
+
         <section class="main-section">
             <div class="image-section">
                 <img src="#" alt="" class="main-img">
@@ -43,15 +51,17 @@ else{
                 </div>
                 <div class="save-error"></div>
             </div>
+            <div class="login-to-save">
+                <a href="signup_login.php"><button class="login-to-save-btn">Login to save playlists</button></a>
+            </div>
         </section>
-
     </div>
-
+            
     <footer id="footer">
         <div class="footer-container">
             <div class="contact">
                 <h3>Contact us</h3>
-                <p class="email">Emailaddress</p>
+                <p class="email">PlaylistGen@email.com</p>
             </div>
 
             <div class="social-links">
@@ -64,9 +74,11 @@ else{
     </div>
     </footer>
 
-    <script src=" https://code.jquery.com/jquery-3.4.1.min.js"> </script> <script src=" js/bundle.js"></script>
-
+   <script src=" https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+   <script src=" js/bundle.js"></script>
 
 </body>
 
 </html>
+
+

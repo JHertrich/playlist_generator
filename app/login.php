@@ -1,12 +1,19 @@
 <?php 
+
+/*
+AUTHOR: JOHANNES HERTRICH
+LATEST UPDATE: 01/07/2020
+*/
+
+//LOGIN HANDLER (VALIDATION)
+
 session_start();
-//ini_set('session.cookie_secure', '0');
 
 include 'Classes/Database.class.php';
 
 
 try{
-    //Übergabe der Formular Eingaben in Variablen
+    //STORING LOGIN FORM DATA TO VARIABLES
     
     if(isset($_POST['email']))
     {
@@ -15,8 +22,7 @@ try{
     };   
 
     
-    //Überprüfung, ob User Eingaben gültig. 
-
+    //VALIDATION OF THE DATA AND ERROR MESSAGES
     if(empty($email) or empty($password))
     {
         echo 'all fields required';
@@ -42,7 +48,8 @@ try{
             echo "Incorrect Password";
             exit;
         }
-    
+        
+        //IF DATA OK, USER GETS LOGGED IN AND SENT BACK TO index.php
         else
         {
             echo 'You are logged in now' . '<br>';  
@@ -52,9 +59,7 @@ try{
         }  
     }
 }   
-            
-            
-//falls der Datenbankzugriff, bzw die sql queries in der Database Klasse fehlerhaft sind, wird hier die PDO Exception "gefangen"  
+//CATCH DATABASE CONNECTION ERRORS IN PDOException 
 catch (PDOException $e) 
 {
     $errNo = $e->getCode();

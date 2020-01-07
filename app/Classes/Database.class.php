@@ -1,6 +1,10 @@
 <?php
+/*
+AUTHOR: JOHANNES HERTRICH
+LATEST UPDATE: 01/07/2020
+*/
 
-//Database Klasse
+//DATABASE CLASS
 
 class Database
 {
@@ -26,7 +30,7 @@ class Database
         $this->connect();
     }
 
-    //Verbindung mit der SQL Datenbank
+    //CONNECTION TO MariaDB DATABASE USING PDO
     
     public function connect()
     {
@@ -37,7 +41,7 @@ class Database
     }
         
      
-    //checkMail() - gibt Anzahl rows zurück, bei der die Emailaddresse mit der im HTML Formular eingegebenen Emailaddresse übereinstimmt
+    //checkMail() - CHECKS IF EMAIL ALREADY EXISTS IN DATABASE 
     public function checkMail()
     { 
         $sql = "SELECT COUNT(*) FROM t_user WHERE email = ?";
@@ -48,7 +52,7 @@ class Database
     }
         
         
-    //registerUser() - fügt Userdaten in die Datenbank ein
+    //registerUser() - SAVES USER DATA TO DATABASE
     
     public function registerUser($fn, $email, $pw)
     { 
@@ -58,7 +62,7 @@ class Database
         return true;
     }
 
-    //get Password() - For Login - check if Pw is correct
+    //get Password() - GETS THE STORED PASSWORD WHEN USER LOGS IN TO CHECK IF THE PASSWORD IS CORRECT
     public function getPassword()
     {
         $sql = "SELECT * FROM t_user WHERE email = ?";
@@ -70,6 +74,7 @@ class Database
         return $storedPw;
     }
 
+    //GETS THE USER ID OF THE LOGGED IN USER
     public function getUser(){
         $sql = "SELECT * FROM t_user WHERE email = ?";
         $stmt = $this->pdo->prepare($sql);
@@ -80,6 +85,7 @@ class Database
         return $userId;
     }
 
+    //SAVES ARTIST DATA TO DATABASE AND RETURNS ARTIST ID
     public function saveArtist($artistName)
     { 
         $sql = "INSERT IGNORE INTO interpret (int_name) VALUES (:int_name)";
@@ -88,25 +94,54 @@ class Database
         
        if($this->pdo->lastInsertId()){
             return $this->pdo->lastInsertId();
+        }
+        else{
+             $sql2 = "SELECT * FROM interpret WHERE int_name = '$artistName'"; 
+             
+             foreach($this->pdo->query($sql2) as $row){
+                 return $row->int_id;
+             }
+         }   
+     }
             
-       }
-       else{
-            $sql2 = "SELECT * FROM interpret WHERE int_name = '$artistName'"; 
-            
-            foreach($this->pdo->query($sql2) as $row){
-                return $row->int_id;
+    //SAVES SONG DATA TO DATABASE AND RETURNS SONG ID   
+    public function saveSong($artistId, $trackName)
+    { 
+        $sql = "INSERT IGNORE INTO song (int_id, song_titel) VALUES (:int_id, :song_titel)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['int_id'=>$artistId, 'song_titel'=>$trackName]);
+
+        if($this->pdo->lastInsertId()){
+            return $this->pdo->lastInsertId();
+        }
+        else{
+             $sql2 = "SELECT * FROM song WHERE song_titel = '$trackName'"; 
+             
+             foreach($this->pdo->query($sql2) as $row){
+                 return $row->song_id;
             }
         }   
     }
-       
-        
-    public function saveSong($artistId, $trackName)
+            
+    //SAVES PLAYLIST DATA TO DATABASE AND RETURNS PLAYLIST ID   
+    public function savePlaylist($userLoggedIn, $playlistName)
     { 
-        $sql = "INSERT INTO song (int_id, song_titel) VALUES (:int_id, :song_titel)";
+        $sql = "INSERT IGNORE INTO playlist (user_id, pl_name) VALUES (:user_id, :pl_name)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['int_id'=>$artistId, 'song_titel'=>$trackName]);
+        $stmt->execute(['user_id'=>$userLoggedIn, 'pl_name'=>$playlistName]);
+
+        return $this->pdo->lastInsertId();
+    }
+
+    //SAVES SONGS IN PLAYLIST DATA TO DATABASE
+    public function saveSongsInPlaylist($songId, $playlistId, $songPosition)
+    { 
+        $sql = "INSERT INTO so_in_pl (song_id, pl_id, song_pos) VALUES (:song_id, :pl_id, :song_pos)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['song_id'=>$songId, 'pl_id'=>$playlistId, 'song_pos'=>$songPosition]);
     }
 }
+
         
         
         

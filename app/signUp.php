@@ -1,12 +1,17 @@
 <?php  
+/*
+AUTHOR: JOHANNES HERTRICH
+LATEST UPDATE: 01/07/2020
+*/
 
-//hier werden die beiden benötigten Klassen inkludiert
+//SIGNUP HANDLER - VALIDATION OF DATA FROM SIGNUP FORM
+
 include 'Classes/Database.class.php';
 include 'Classes/User.class.php' ;
 
 
 try{
-    //Übergabe der Formular Eingaben in Variablen
+    //STORE SIGNUP FORM DATA IN VARIABLES 
     
     if(isset($_POST['fullname']))
     {
@@ -18,7 +23,7 @@ try{
     };   
     
 
-    //Überprüfung, ob User Eingaben gültig. 
+    //VALIDATION OF THE DATA AND ERROR MESSAGES 
 
     if(empty($fullname) or empty($email) or empty($password))
     {
@@ -41,8 +46,7 @@ try{
     }
 
     
-    //Falls alle Angaben korrekt, wird ein User Objekt angelegt. Falls die saveUser funktion False zurückgibt, wird ein error an signUp_form in der querystring geschickt
-    //Falls saveUser true, wird wird ein success an signUp_form in der querystring geschickt
+    // IF DATA OK, A NEW USER OBJECT IS INSTANTIATED
     else
     {
         $hashedPw = password_hash($password, PASSWORD_DEFAULT); 
@@ -51,7 +55,7 @@ try{
 }   
 
 
-//falls der Datenbankzugriff, bzw die sql queries in der Database Klasse fehlerhaft sind, wird hier die PDO Exception "gefangen"  
+//CATCH DATABASE CONNECTION ERRORS IN PDOException 
 catch (PDOException $e) 
 {
     $errNo = $e->getCode();

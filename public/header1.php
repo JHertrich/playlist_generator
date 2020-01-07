@@ -1,3 +1,10 @@
+<!--
+AUTHOR: JOHANNES HERTRICH
+LATEST UPDATE: 01/07/2020
+
+HEADER1 FOR index.php -> SHOWN IF USER NOT LOGGED IN
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,4 +1,9 @@
-//VALIDATION PLUGIN ON LOGIN FORM AND AJAX
+/*
+AUTHOR: JOHANNES HERTRICH
+LATEST UPDATE: 01/07/2020
+*/
+
+//JQUERY VALIDATION PLUGIN ON LOGIN-FORM 
 $(".login-form").validate({
     rules: {
         email: {
@@ -22,7 +27,7 @@ $(".login-form").validate({
         $('form').effect("shake");
     },
 
-    //AJAX LOGIN POST
+    //LOGIN ->AJAX POST FORM DATA TO login.php
     submitHandler: function (form) {
 
         $.ajax({
@@ -33,7 +38,7 @@ $(".login-form").validate({
             data: $(".login-form").serialize(),
 
 
-            // diese Funktion wird ausgeführt wenn der HTTPRequest erfolgreich war
+            // CALLED IF HTTPRequest WAS SUCCESSFULL. DISPLAYS PHP ERROR MESSAGES
             success: function (response) {
 
                 $(".login-form").children().hide();
@@ -45,9 +50,7 @@ $(".login-form").validate({
 })
 
 
-
-
-//VALIDATION PLUGIN ON SIGN UP FORM AND AJAX 
+//JQUERY VALIDATION PLUGIN ON SIGNUP-FORM 
 $(".signup-form").validate({
     rules: {
         fullname: "required",
@@ -76,7 +79,7 @@ $(".signup-form").validate({
     invalidHandler: function (form, validator) {
         $(".signup-form").effect("shake");
     },
-    //AJAX SIGNUP POST  
+    //SIGNUP ->AJAX POST FORM DATA TO signup.php 
     submitHandler: function (form) {
 
         $.ajax({
@@ -87,7 +90,7 @@ $(".signup-form").validate({
             data: $(".signup-form").serialize(),
 
 
-            // diese Funktion wird ausgeführt wenn der HTTPRequest erfolgreich war
+            // CALLED IF HTTPRequest WAS SUCCESSFULL. DISPLAYS PHP ERROR MESSAGES
             success: function (response) {
 
                 $(".signup-form").children().hide();
@@ -98,7 +101,7 @@ $(".signup-form").validate({
 })
 
 
-//FORM ANIMATIONS
+//LOGIN-FORM ANIMATIONS
 $(".login-selector").click(function () {
     $(".login-form").animate({
         left: "5vw",
@@ -113,7 +116,7 @@ $(".login-selector").click(function () {
     }, 200);
 })
 
-
+//SIGNUP-FORM ANIMATIONS
 $(".signup-selector").click(function () {
     $(".login-form").animate({
         left: "43vw",

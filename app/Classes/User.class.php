@@ -1,6 +1,10 @@
 <?php
+/*
+AUTHOR: JOHANNES HERTRICH
+LATEST UPDATE: 01/07/2020
+*/
 
-//User Klasse
+//USER CLASS
 class User
 {
     
@@ -17,22 +21,20 @@ class User
         $this->saveUser();
     }    
    
-    /*saveUser() - erstellt neues Database Objekt und übergibt die eingegebene Emailaddresse. in der Database Klasse wird checkMail() aufgerufen.
-    Es wird geprüft, ob die Email bereits in der Datenbank vorhanden ist. Falls nicht, wird registerUser() in der Datenbankklasse aufgerufen und die eingegebenen User Daten übergeben.
-    Ein neuer User wird in der Datenbank angelegt.*/
+    /*saveUser() - CHECKS, IF EMAIL ALREADY EXISTS (checkMail() in Database.class.php
+    IF EMAIL NOT TAKEN, USER IS SAVED TO DATABASE
+    */
     public function saveUser()
     {
         $db = new Database($this->email);
               
         if($db->checkMail())
         {
-            //return false;
             echo 'This email is already registered';    
         }
         else
         {
             $db->registerUser($this->fullname, $this->email, $this->password);
-            //return true;
             echo 'You have been successfully registered';    
         } 
     }

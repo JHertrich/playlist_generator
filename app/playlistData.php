@@ -1,4 +1,8 @@
 <?php
+/*
+AUTHOR: JOHANNES HERTRICH
+LATEST UPDATE: 01/08/2020
+*/
 
 include 'Classes/Database.class.php';
 
@@ -6,48 +10,36 @@ try{
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') 
     {
-        //Receive the RAW post data.
+        //RECEIVE THE RAW POST DATA FROM main.js
         $content = file_get_contents("php://input");
     
-        //Attempt to decode the incoming RAW post data from JSON.
+        //Decode the incoming RAW post data from JSON
         $array = json_decode($content, true);
-    
-    
 
-        /*
-        foreach($array as $key => $value){
-            foreach($value as $values){
-                $data[] = $values[0];
-            }
-        }
-        $artists = array_slice($data, 0, 20);
-        $tracks = array_slice($data, 20, 40);
-        $playlistName = ['name'];
-
-         */
-       
+       //SAVING POST DATA IN VARIABLES
         $artists = $array['artists'];
         $tracks = $array['tracks'];
-        $playlistName = ['name'];
-
-
-
+        $playlistName = $array['name'];
+        $userLoggedIn = $array['user'];
+  
+        //SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
         $db = new Database('');  
 
+        $playlistId = $db->savePlaylist($userLoggedIn, $playlistName);
 
         for($i=0; $i<count($artists); $i++){
 
-           $artistId = $db->saveArtist($artists[$i][0]);
-           $db->saveSong($artistId, $tracks[$i][0]);
-           
-           die('first Artist and Song inserted');
+            $songPosition = $i +1;
+                     
+            $artistId = $db->saveArtist($artists[$i][0]);
+            $songId = $db->saveSong($artistId, $tracks[$i][0]);
 
+            $db->saveSongsInPlaylist($songId, $playlistId, $songPosition);
+                        
         }
 
     }
            
-
-
     else{
         throw new Exception( "no json data received");
     }
@@ -55,6 +47,8 @@ try{
 catch (Exception $e) {
     echo $e->getMessage(), "\n";
 }
+            
+    
         
 
         
