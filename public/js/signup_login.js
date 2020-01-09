@@ -12,7 +12,7 @@ $(".login-form").validate({
         },
         password: {
             required: true,
-            minlength: 8
+            minlength: 6
         },
         messages: {
             password: {
@@ -64,7 +64,7 @@ $(".signup-form").validate({
         },
         passwordConf: {
             required: true,
-            minlength: 8,
+            minlength: 6,
             equalTo: "#password"
         },
         messages: {

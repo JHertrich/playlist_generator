@@ -26,11 +26,13 @@ HEADER1 FOR index.php -> SHOWN IF USER NOT LOGGED IN
                 <div class="logo-text">Playlist generator</div>
             </div>
             <nav>
+                <!--
                 <div class="spotify-connect">
                     <img src="#" alt="" class="spotify-logo">
                     <a class="connect-link" href="#">Connect to Spotify</a>
-                    <!--signs up to spotify-->
+                    
                 </div>
+                signs up to spotify - not integrated yet-->
                 <div class="login">
                     <a href="signup_login.php" class="login-link">Login</a>
                     <!--sends to Login/signup page-->

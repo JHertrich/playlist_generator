@@ -16,13 +16,7 @@
                 <img class="logo-img" src="#" alt="">
                 <div class="logo-text">Playlist generator</div>
             </div>
-            <nav>
-                <div class="spotify-connect">
-                    <img src="#" alt="" class="spotify-logo">
-                    <a class="connect-link" href="#">Connect to Spotify</a>
-                    <!--signs up to spotify-->
-                </div>
-            </nav>
+           
         </header>
 
         <div class="container-back">

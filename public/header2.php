@@ -28,16 +28,17 @@ HEADER2 FOR index.php -> SHOWN IF USER LOGGED IN
                 <div class="logo-text">Playlist generator</div>
             </div>
             <nav>
+                <!--
                 <div class="stored-playlists">
                     <a href="#" class="your-playlists">Your playlists</a>
-                    <!--only accessible if logged in-->
                 </div>
-               
+                only accessible if logged in-->    
+               <!--
                 <div class="spotify-connect">
                     <img src="#" alt="" class="spotify-logo">
                     <a class="connect-link" href="#">Connect to Spotify</a>
-                    <!--signs up to spotify, only accessible if logged in-->
                 </div>
+                signs up to spotify, only accessible if logged in-->    
                 <div class="logout">
                     <a href="../app/logout.php" class="logout-link">logout</a>
                     <!--sends to Logout page, if logged in-->

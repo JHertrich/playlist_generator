@@ -8,7 +8,7 @@ var Spotify = require('spotify-web-api-js');
 var s = new Spotify();
 
 //Spotify access token for API Requests
-accessToken = 'BQCeUCvSLOagoOKx1LVdNPH01OvCIXROL6ExeIk5OjhjXRerDJK_1_FLTzf3CDwBh3nrpQ9pFSJFBNuKuM2vy-E1N2vTg-Tq8H4s9PY_UZ8OEVWkNsqRqDydltQkA2trH04g1_Q4skMRZLXVc7g6rg25Rmx-zk3tAw'
+accessToken = 'BQA7_4qYwcXSNrXoOgWBvoV9j959ZJjdfCNTRntEkz-7ZvqcHhTHVY9XPdKU0jsGIA1QgPP9edADSigo9VIe1QQgvbkpTJ0wrv6igf1Yr03XDddNfZxcDJueNulq-0XHT5TL-1oEeBTjh9DTVJkniAF9b33hPtfJOQ'
 s.setAccessToken(accessToken);
 
 //DOM ELEMENTS

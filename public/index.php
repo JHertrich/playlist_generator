@@ -46,9 +46,11 @@ else{
                 <div class="save-here">
                     <button class="save" type="submit">Save here</button>
                 </div>
+                <!--
                 <div class="add-to-spotify">
                     <button class="add" type="submit">Add to spotify</button>
                 </div>
+                -->
                 <div class="save-error"></div>
             </div>
             <div class="login-to-save">
