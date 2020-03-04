@@ -9,8 +9,8 @@ Dabei wird die Interpreten ID und basierend auf dieser, die als „ähnlich“ 
 Die HTTP-Requests bedienen sich der Spotify Web API JS von JM Perez (https:// github.com/JMPerez/spotify-web-api-js), einer Library, die Helferfunktionen für alle Spotify API Endpunkte enthält. Die Library wurde als Paket per npm (Node) installiert.
 Die Webseite bietet weiterhin die Option, User-Playlists in einer MariaDB Datenbank abspeichern zu können. Dies erfordert jedoch die Registrierung des Users und einen anschließenden Login. 
 Die Signup/Login Formulare werden durch jQuery und PHP validiert. Das Datenbank-Handling erfolgt mittels PHP (objektorientiert).
-Ausblick.
 
+Ausblick
 Die Webseite soll nach Abschluss des Projekts weiterhin mit neuen Funktionen ausgestattet werden. 
 Dem User soll ermöglicht werden, die generierte Playlist optional - direkt von der Webseite aus - seinem Spotify Account hinzufügen zu können. 
 Die Anmeldung des Users in seinem Spotify Account über die PlaylistGen Webseite soll gemäß den Spotify Richtlinien (oAuth Autorisierung) integriert werden. 
